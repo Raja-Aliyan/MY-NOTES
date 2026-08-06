@@ -1,0 +1,25 @@
+The Domain Name System (DNS) is the component of the internet standard protocol responsible for converting human-friendly domain names into the internet protocol (IP) addresses computers use to identify each other on the network.
+DNS follows a proper hirearchy... the hirearchy starts with root level (.) and it branches out into top level(.net and .com) and these top level branches out into second level(example.com,example.net) and at the end hostnames and subtitles are included
+(www.example.com,mail.example.com) (support.example.net,www.example.net)
+
+DNS ARCHITECTURE:
+DNS architecture consist of two types authoritative and recursive and they are explained below:
+
+1. Core Server Roles
+Recursive DNS Server (Resolver):
+1)User ke browser ke liye IP address dhoond kar laata hai (Middleman/Search Assistant).
+2)Jawabat ko Cache mein save karta hai taake dobara dhoondna na pare.
+
+Authoritative DNS Server:
+1)Domain ki asli aur final IP record apne paas rakhta hai (Source of Truth).
+2)Direct user se nahi, sirf Recursive server ke sawalon ka official jawab deta hai.
+
+2. Authoritative Server Types
+Primary (Master): Jahan admin asli records add, edit ya delete karta hai (Read-Write access).
+
+Secondary (Slave): Primary ki exact copy/backup (Read-Only access). High availability aur traffic control ke liye use hota hai.
+
+3. DNS Hierarchy (3 Levels)
+Root Name Servers (Top Level): Global DNS structure ka head. Query ko sahi TLD Server ki taraf bhejta hai.
+TLD Name Servers (Middle Level): Domain extension (.com, .pk, .org) ko dekhte hue query ko specific domain ke Authoritative Server par bhejta hai.
+Domain Authoritative Servers (Final Level): Exact domain (example.com) ka asli IP address Recursive server ko de deta hai.
