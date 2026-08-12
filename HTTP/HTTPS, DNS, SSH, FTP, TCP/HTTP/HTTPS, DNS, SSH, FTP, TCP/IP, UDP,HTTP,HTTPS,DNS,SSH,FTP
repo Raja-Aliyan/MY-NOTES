@@ -1,1 +1,81 @@
+Fundamental Networking Protocols
 
+Table of Contents
+1. TCP/IP
+2. UDP
+3. HTTP aur HTTPS
+4. SSH
+5. FTP
+6. Quick Summary
+
+
+1. TCP/IP (Transmission Control Protocol / Internet Protocol)
+
+TCP/IP poore internet ka main framework hai.
+
+IP (Internet Protocol): Data packets par sender aur receiver ka IP address lagata hai (Routing).
+TCP (Transmission Control Protocol): Guarantee deta hai ke data sahi salamat aur order mein pohnche.
+
+Working (3-Way Handshake):
+1. SYN (Client requests connection)
+2. SYN-ACK (Server acknowledges)
+3. ACK (Client confirms, data transfer starts)
+
+Features: Reliable, Connection-oriented. Agar packet lost ho jaye, toh retransmit karta hai.
+Use Cases: Web browsing, Emails, File downloads.
+
+
+2. UDP (User Datagram Protocol)
+
+Transport layer ka protocol jo TCP ke muqable mein fast lekin un-reliable hai.
+
+Features: Connectionless, No delivery guarantee (agar packet drop ho jaye toh dobara nahi bhejta).
+Pros: TCP se kafi fast aur lightweight hai kyun ke 3-way handshake nahi hota.
+Use Cases: Online Gaming, Live Video Streaming, Voice Calls (VoIP) jahan speed accuracy se zyada zaroori hai.
+
+
+3. HTTP aur HTTPS (Hypertext Transfer Protocol / Secure)
+
+Web browsing ke liye Application Layer protocols.
+
+HTTP (Port 80)
+Client aur Server ke darmiyan plain text mein data transfer karta hai.
+Security Risk: Data encrypted nahi hota. Man-in-the-Middle (MitM) attack se data chori ho sakta hai.
+
+HTTPS (Port 443)
+HTTP ka secure version.
+Security: SSL/TLS (Transport Layer Security) ka istemal karta hai. Saara data encrypt ho jata hai.
+
+
+
+
+
+4. SSH (Secure Shell)
+
+Remote servers ko securely manage karne ke liye protocol.
+Port: 22
+Purpose: Door baithe Linux/Unix server par secure Command Line Interface (CLI) access deta hai.
+Security: Poora session strong encryption (Public/Private Keys) ke zariye secure hota hai.
+Use Cases: Cloud servers (AWS, Azure) ki remote administration aur secure file transfer.
+
+
+5. FTP (File Transfer Protocol)
+
+Ek computer se doosre computer par files transfer karne ka purana protocol.
+Ports: 20 (Data Transfer), 21 (Control/Login)
+Problem: Standard FTP mein login credentials aur data plain text mein transmit hota hai.
+Modern Solution: Aaj kal SFTP (SSH File Transfer Protocol) use hota hai jo FTP ko SSH ki encryption ke sath secure banata hai.
+
+
+6. Quick Summary
+
+TCP: Port N/A | Web, Email, Files | Guaranteed aur Reliable delivery
+UDP: Port N/A | Gaming, Streaming, DNS | Fast, Lightweight, No guarantee
+HTTP: Port 80 | Web Browsing | Plain text (Insecure)
+HTTPS: Port 443 | Secure Web Browsing | Encrypted (SSL/TLS)
+DNS: Port 53 | Name Resolution | Domain Name ko IP Address banata hai
+SSH: Port 22 | Remote Management | Encrypted CLI Access
+FTP: Port 20, 21 | File Transfer | Upload/Download (Insecure by default)
+
+
+Notes created for Cybersecurity aur Cloud Engineering reference.
