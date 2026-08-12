@@ -93,3 +93,15 @@ Common Architectures:
 Remote Access VPN: Connects individual endpoints (e.g., remote workers) securely to a private corporate network over the Internet.
 
 Site-to-Site VPN: Connects two entire geographically separated networks (e.g., Branch Office to Main Data Center) using dedicated VPN gateways.
+
+
+
+
+
+
+
+SUMMARY:
+SWITCH  → MAC → Frame → Same Network
+ROUTER  → IP → Packet → Different Networks
+FIREWALL → Rules → Allow/Block → Security
+VPN → Encryption → Secure Tunnel → Private Access
