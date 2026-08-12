@@ -1,0 +1,95 @@
+Core Computer Networking Fundamentals
+A structured reference guide covering the foundational pillars of computer networking: Switching, Routing, Firewalls, and VPNs.
+
+Table of Contents
+Switching
+
+Routing
+
+Switching vs Routing
+
+Firewalls
+
+Virtual Private Networks (VPNs)
+
+1. Switching
+Definition: Switching operates within a single Local Area Network (LAN) to facilitate communication between interconnected host devices (e.g., PCs, servers, printers).
+
+OSI Layer: Layer 2 (Data Link Layer)
+Addressing Mechanism: Media Access Control (MAC) Address
+Data Unit: Frame
+
+How It Works:
+
+MAC Address Table (CAM Table): The switch builds and maintains a dynamically updated table mapping device MAC addresses to physical switch ports.
+
+Unicast Delivery: Unlike a hub (which broadcasts data to all ports), a switch forwards incoming frames strictly to the destination port associated with the target MAC address.
+
+Frame Processing: Reads Layer 2 source and destination MAC headers to direct local network traffic without inspecting IP data.
+
+2. Routing
+Definition: Routing connects distinct, separate networks (e.g., connecting a local LAN to an Internet Service Provider network or across different subnets).
+
+OSI Layer: Layer 3 (Network Layer)
+Addressing Mechanism: Internet Protocol (IP) Address
+Data Unit: Packet
+
+How It Works:
+
+Routing Table Inspection: Routers maintain a routing table containing known network destinations, metrics, and next-hop gateways.
+
+Path Determination: Upon receiving a packet, the router inspects the destination IP address and uses routing algorithms/protocols (e.g., OSPF, BGP, Static Routes) to determine the optimal outbound interface.
+
+Packet Forwarding: Decapsulates Layer 2 headers, updates TTL (Time to Live), re-encapsulates the Layer 3 packet with new Layer 2 headers, and forwards it to the next-hop router.
+
+3. Switching vs Routing
+Network Scope:
+Switching: Intra-network (Same LAN / Subnet)
+Routing: Inter-network (Cross-LAN / WAN / Internet)
+
+OSI Layer:
+Switching: Layer 2 (Data Link)
+Routing: Layer 3 (Network)
+
+Addressing:
+Switching: MAC Address
+Routing: IP Address
+
+PDU:
+Switching: Frame
+Routing: Packet
+
+Primary Device:
+Switching: L2 Network Switch
+Routing: Router / L3 Switch
+
+4. Firewalls
+Definition: A firewall acts as a perimeter security control that analyzes incoming and outgoing network traffic against a defined set of security rules (Access Control Lists).
+
+OSI Layer: Layers 3 (Network), 4 (Transport), and 7 (Application)
+Core Function: Enforce Allow or Deny/Block policies on network connections.
+
+Key Types and Inspection Mechanisms:
+
+Stateless / Packet Filtering: Filters traffic based purely on static parameters (Source IP, Destination IP, Source Port, Destination Port, Protocol).
+
+Stateful Inspection: Tracks the state of active network connections (connection state table). Automatically allows return traffic for legitimately established outbound requests.
+
+Next-Generation Firewall (NGFW): Combines stateful inspection with deep packet inspection (DPI), Intrusion Prevention Systems (IPS), malware detection, and application-layer visibility (Layer 7).
+
+5. Virtual Private Networks (VPNs)
+Definition: A VPN constructs a secure, encrypted connection (tunnel) over an untrusted or public network (such as the Internet).
+
+Primary Objectives: Data Confidentiality (Encryption), Integrity (Anti-tampering), and Authentication.
+
+Key Concepts and Implementations:
+
+Tunneling Protocols: Encapsulates network traffic within secure transport protocols (e.g., IPsec, OpenVPN, WireGuard).
+
+Encryption Standards: Scrambles payload data using cryptographic ciphers (e.g., AES-256) so intercepted traffic remains unreadable to unauthorized third parties.
+
+Common Architectures:
+
+Remote Access VPN: Connects individual endpoints (e.g., remote workers) securely to a private corporate network over the Internet.
+
+Site-to-Site VPN: Connects two entire geographically separated networks (e.g., Branch Office to Main Data Center) using dedicated VPN gateways.
