@@ -73,7 +73,6 @@ TCP: Port N/A | Web, Email, Files | Guaranteed aur Reliable delivery
 UDP: Port N/A | Gaming, Streaming, DNS | Fast, Lightweight, No guarantee
 HTTP: Port 80 | Web Browsing | Plain text (Insecure)
 HTTPS: Port 443 | Secure Web Browsing | Encrypted (SSL/TLS)
-DNS: Port 53 | Name Resolution | Domain Name ko IP Address banata hai
 SSH: Port 22 | Remote Management | Encrypted CLI Access
 FTP: Port 20, 21 | File Transfer | Upload/Download (Insecure by default)
 
