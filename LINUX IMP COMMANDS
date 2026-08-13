@@ -30,3 +30,204 @@ hostname	Show system hostname
 uname -a	Show detailed system information
 man	Open command manual
 --help	Show command help
+
+
+
+
+
+
+
+ SOME OTHER COMMANDS:
+
+
+1. chmod
+   Use: File/folder ki permissions change karna.
+
+   Syntax:
+   chmod 755 file.txt
+
+   Common:
+   chmod 755 file.txt → rwx | r-x | r-x
+   chmod 644 file.txt → rw- | r-- | r--
+   chmod 700 file.txt → rwx | --- | ---
+   chmod 600 file.txt → rw- | --- | ---
+
+   Values:
+   r = 4 (read)
+   w = 2 (write)
+   x = 1 (execute)
+
+   7 = rwx
+   6 = rw-
+   5 = r-x
+   4 = r--
+   3 = -wx
+   2 = -w-
+   1 = --x
+   0 = ---
+
+   755:
+   7 = Owner
+   5 = Group
+   5 = Others
+
+   Actual ls output:
+   -rwxr-xr-x
+   First "-" = normal file
+   rwx = Owner
+   r-x = Group
+   r-x = Others
+
+
+2. whoami
+   Use: Current logged-in user ka naam dekhna.
+
+   Command:
+   whoami
+
+   Example output:
+   kali
+
+   Matlab: tum "kali" user ke naam se logged in ho.
+
+
+3. id
+   Use: Current user ki UID, GID aur groups ki information dekhna.
+
+   Command:
+   id
+
+   Example:
+   uid=1000(kali) gid=1000(kali) groups=1000(kali),27(sudo)
+
+   uid = User ID
+   gid = Group ID
+   groups = User kin groups mein hai
+
+
+4. groups
+   Use: Current user kin groups ka member hai dekhna.
+
+   Command:
+   groups
+
+   Example:
+   kali sudo audio video
+
+   Matlab: kali user in groups ka member hai.
+
+
+5. sudo
+   Use: Command ko administrator/root privileges ke saath run karna.
+
+   Syntax:
+   sudo command
+
+   Example:
+   sudo whoami
+
+   Output:
+   root
+
+   Matlab: command administrator privileges ke saath run hui.
+
+   Example:
+   sudo apt update
+
+
+6. chown
+   Use: File/folder ka OWNER change karna.
+
+   Syntax:
+   sudo chown user file
+
+   Example:
+   sudo chown root test.txt
+
+   Owner:
+   kali → root
+
+   Group same rahega.
+
+
+7. chown user:group
+   Use: File/folder ka OWNER aur GROUP dono change karna.
+
+   Syntax:
+   sudo chown user:group file
+
+   Example:
+   sudo chown root:root test.txt
+
+   Owner → root
+   Group → root
+
+   Example:
+   sudo chown kali:developers project.txt
+
+   Owner → kali
+   Group → developers
+
+
+8. chgrp
+   Use: Sirf file/folder ka GROUP change karna.
+
+   Syntax:
+   sudo chgrp group file
+
+   Example:
+   sudo chgrp developers project.txt
+
+   Owner change nahi hoga.
+   Sirf group "developers" ho jayega.
+
+
+9. ssh
+   Use: Apne computer se kisi doosri authorized Linux machine/server
+   ke terminal mein remotely login karna.
+
+   Syntax:
+   ssh username@IP
+
+   Example:
+   ssh kali@192.168.1.20
+
+   kali → remote machine ka username
+   192.168.1.20 → remote machine ka IP
+
+   Cloud example:
+   ssh ubuntu@AWS_SERVER_IP
+
+   Matlab: apne computer se AWS Linux server ka terminal access karna.
+
+
+10. ssh-keygen
+    Use: SSH authentication ke liye SSH key pair generate karna.
+
+    Command:
+    ssh-keygen
+
+    Normally banengi:
+
+    id_ed25519
+    → Private Key 🔴
+    → Secret rakhni hai
+
+    id_ed25519.pub
+    → Public Key 🟢
+    → Server par use hoti hai
+
+
+11. ls ~/.ssh
+    Use: SSH ki files/keys dekhna.
+
+    Command:
+    ls ~/.ssh
+
+    Common files:
+
+    id_ed25519
+    → Private Key
+
+    id_ed25519.pub
+    → Public Key
