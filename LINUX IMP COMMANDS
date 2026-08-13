@@ -1,0 +1,32 @@
+
+pwd	Show current directory
+cd	Change directory
+cd ..	Go to parent directory
+cd ~	Go to home directory
+cd /	Go to root directory
+cd -	Go to previous directory
+ls	List files/directories
+ls -l	Detailed listing
+ls -a	Show hidden files
+ls -lh	Human-readable sizes
+ls -lah	Detailed + hidden + readable
+touch	Create file
+mkdir	Create directory
+mkdir -p	Create nested directories
+cp	Copy file
+cp -r	Copy directory
+mv	Move file/directory
+mv	Rename file/directory
+rm	Delete file
+rmdir	Delete empty directory
+rm -r	Delete directory and contents
+rm -rf	Force delete recursively
+whoami	Show current user
+id	Show user/group information
+who	Show logged-in users
+w	Show user activity
+users	Show logged-in usernames
+hostname	Show system hostname
+uname -a	Show detailed system information
+man	Open command manual
+--help	Show command help
