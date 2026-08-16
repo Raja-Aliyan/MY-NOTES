@@ -37,6 +37,29 @@ man	Open command manual
 
 
 
+
+
+
+| Command                    | Use                                                                |
+| -------------------------- | ------------------------------------------------------------------ |
+| `cat file.txt`             | File ka **poora content** screen par show karta hai                |
+| `cat -n file.txt`          | File ka content **line numbers ke sath** show karta hai            |
+| `head file.txt`            | File ki **starting 10 lines** show karta hai                       |
+| `head -n 5 file.txt`       | File ki **starting 5 lines** show karta hai                        |
+| `head -c 20 file.txt`      | File ke **starting 20 bytes** show karta hai                       |
+| `tail file.txt`            | File ki **last 10 lines** show karta hai                           |
+| `tail -n 5 file.txt`       | File ki **last 5 lines** show karta hai                            |
+| `tail -c 20 file.txt`      | File ke **last 20 bytes** show karta hai                           |
+| `diff file1.txt file2.txt` | Do files ke content mein **difference compare** karta hai          |
+| `diff -r dir1 dir2`        | Do **poori directories** aur unke andar files ko compare karta hai |
+
+
+
+
+
+
+
+
  SOME OTHER COMMANDS:
 
 
