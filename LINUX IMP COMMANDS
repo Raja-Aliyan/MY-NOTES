@@ -254,3 +254,57 @@ man	Open command manual
 
     id_ed25519.pub
     → Public Key
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| Command                              | Purpose                                                                              |
+| ------------------------------------ | ------------------------------------------------------------------------------------ |
+| `sudo useradd username`              | Naya user create karta hai                                                           |
+| `sudo useradd -m username`           | Naya user + uski home directory create karta hai                                     |
+| `sudo passwd username`               | User ka password set/change karta hai                                                |
+| `sudo usermod -d /path username`     | User ki home directory ka path change karta hai                                      |
+| `sudo usermod -d /path -m username`  | Home directory ka path change + existing files ko new location par move karta hai    |
+| `sudo usermod -s /bin/bash username` | User ka default/login shell change karta hai                                         |
+| `sudo usermod -aG group username`    | User ko additional group mein add karta hai                                          |
+| `groups username`                    | User ke groups show karta hai                                                        |
+| `id username`                        | UID, GID aur groups ki detailed information show karta hai                           |
+| `sudo passwd -l username`            | User account ko lock karta hai                                                       |
+| `sudo passwd -u username`            | User account ko unlock karta hai                                                     |
+| `sudo usermod -L username`           | User account ko lock karta hai                                                       |
+| `sudo usermod -U username`           | User account ko unlock karta hai                                                     |
+| `sudo userdel username`              | User account delete karta hai                                                        |
+| `sudo userdel -r username`           | User account + home directory delete karta hai                                       |
+| `grep -w 'username' /etc/passwd`     | `/etc/passwd` mein specific user ki entry find karta hai                             |
+| `ls -ld /home/username`              | User ki home directory ki details show karta hai                                     |
+| `sudo groupadd groupname`            | Naya group create karta hai                                                          |
+| `sudo whoami`                        | Batata hai command elevated privileges ke saath kis user ke naam par run ho rahi hai |
+| `whoami`                             | Current logged-in username show karta hai                                            |
+
