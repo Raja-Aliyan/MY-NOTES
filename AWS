@@ -1,0 +1,44 @@
+# AWS EC2 Notes for GitHub
+
+## AWS Overview
+
+AWS ka matlab Amazon Web Services hai. Ye Amazon ka Cloud Computing platform hai jo internet ke zariye mukhtalif technical services provide karta hai. Is platform mein servers, databases, storage, aur networking jaisi 200 se ziada services shamil hain.
+
+## AWS aur EC2 ka Relation
+
+AWS ek poora Cloud Platform hai.
+EC2 is platform ke andar chalne wali ek core service hai.
+AWS mein EC2 wahi role play karta hai jo computer hardware kisi software environment mein karta hai.
+
+## EC2 Definition
+
+EC2 ka full form Elastic Compute Cloud hai.
+Ye Amazon ke data centers mein mojood Virtual Machines yani Online Remote Computers hain.
+User apni requirement ke mutabiq Operating System, RAM, CPU, aur Storage select karaky kuch minutes mein server setup kar sakta hai.
+
+## Key Features of EC2
+
+Virtualization: Amazon ke physical servers par Virtual Machines run hoti hain.
+Elasticity: Server ki performance, RAM, aur Storage ko zaroorat ke mutabiq barhaya ya kam kia ja sakta hai.
+Pay As You Go Model: Server jitni der chalega sirf utne waqt ka rent pay karna hota hai.
+Remote Access: Is server ko dunia mein kahin se bhi apne laptop ya PC se connect kia ja sakta hai.
+
+## Server Running Concept
+
+Local Machine vs EC2 Cloud Server:
+
+Local Machine Par Code Chalana:
+Agar koi script ya application apne laptop par chalayi jaye toh laptop ko continuous power aur internet connection chahiye hota hai. Laptop shut down ya sleep mode par jane se process stop ho jata hai.
+
+EC2 Server Par Code Chalana:
+EC2 server Amazon ke data centers mein 24/7 high speed internet aur uninterrupted power supply par chalta rehta hai. Local laptop ko off karne ke bawajood EC2 par run hone wala code bina ruke kaam karta rehta hai.
+
+## Connection Methods
+
+Apne laptop se EC2 server ko control karne ke do main tarike hain:
+
+Linux Server Connection (SSH):
+Command Prompt ya Terminal ke zariye Secure Shell protocol use karke Linux EC2 instance se connect hua jata hai.
+
+Windows Server Connection (RDP):
+Remote Desktop Protocol ke zariye GUI screen khol kar Windows EC2 instance ko access kia jata hai.
