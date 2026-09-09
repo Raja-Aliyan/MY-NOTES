@@ -1,1 +1,1137 @@
+                         1 Boto3 with AWS S3 — Beginner Notes
+
+## 1. What is Boto3?
+
+**Boto3** is the official AWS SDK (Software Development Kit) for Python.
+
+It allows Python programs to communicate with and control AWS services.
+
+### Basic Architecture
+
+```text
+Python Program
+      ↓
+    Boto3
+      ↓
+ AWS API
+      ↓
+ AWS Service
+```
+
+### Examples
+
+Using Boto3, Python can interact with:
+
+* Amazon S3
+* Amazon EC2
+* IAM
+* Lambda
+* DynamoDB
+* VPC
+* CloudWatch
+* And many other AWS services
+
+### Example
+
+```python
+import boto3
+
+s3 = boto3.client("s3")
+```
+
+This creates a Boto3 client for Amazon S3.
+
+---
+
+# 2. What is AWS S3?
+
+**S3 = Simple Storage Service**
+
+Amazon S3 is an AWS cloud storage service used to store and retrieve data.
+
+### Common uses
+
+S3 can be used for:
+
+* Images
+* Videos
+* Documents
+* Backups
+* Logs
+* Application files
+* Static website files
+* Database backups
+
+### Basic S3 Structure
+
+```text
+AWS
+ │
+ └── S3
+      │
+      └── Bucket
+           │
+           ├── file1.txt
+           ├── image.jpg
+           └── backup.zip
+```
+
+---
+
+# 3. S3 Bucket
+
+A **Bucket** is a container used to store objects in Amazon S3.
+
+A bucket can contain many objects.
+
+```text
+Bucket: my-bucket
+│
+├── image.jpg
+├── resume.pdf
+├── backup.zip
+└── log.txt
+```
+
+### Important
+
+```text
+S3      → Storage Service
+Bucket  → Container
+Object  → Data stored inside bucket
+```
+
+---
+
+# 4. S3 Object
+
+An **Object** is the data stored inside an S3 bucket.
+
+Examples:
+
+```text
+photo.jpg
+video.mp4
+document.pdf
+backup.zip
+test.txt
+```
+
+Example:
+
+```text
+S3
+ │
+ └── my-bucket
+      │
+      ├── test.txt      ← Object
+      ├── photo.jpg     ← Object
+      └── backup.zip    ← Object
+```
+
+### File vs Object
+
+On Linux:
+
+```text
+test.txt → File
+```
+
+In S3:
+
+```text
+test.txt → Object
+```
+
+---
+
+# 5. Installing Boto3
+
+Kali Linux protects its system Python environment, so Boto3 should be installed inside a virtual environment.
+
+### Create Virtual Environment
+
+```bash
+python3 -m venv venv
+```
+
+### Activate Virtual Environment
+
+```bash
+source venv/bin/activate
+```
+
+After activation:
+
+```text
+(venv) kali@kali:~/boto3-practice$
+```
+
+### Install Boto3
+
+```bash
+pip install boto3
+```
+
+### Verify Installation
+
+```bash
+python -c "import boto3; print(boto3.__version__)"
+```
+
+Example:
+
+```text
+1.43.83
+```
+
+---
+
+# 6. Moto — AWS Practice Environment
+
+**Moto** is a Python library used to mock AWS services.
+
+It allows us to practice Boto3 without sending requests to real AWS.
+
+### Real AWS
+
+```text
+Python
+  ↓
+Boto3
+  ↓
+Internet
+  ↓
+AWS
+  ↓
+S3
+```
+
+### Using Moto
+
+```text
+Python
+  ↓
+Boto3
+  ↓
+Moto
+  ↓
+Mock AWS
+  ↓
+S3
+```
+
+### Install Moto
+
+```bash
+pip install moto
+```
+
+### Import
+
+```python
+from moto import mock_aws
+```
+
+### Start Mock AWS
+
+```python
+with mock_aws():
+    # AWS practice code
+```
+
+---
+
+# 7. Creating an S3 Client
+
+A Boto3 **client** provides methods for interacting with an AWS service.
+
+### Syntax
+
+```python
+boto3.client("service-name")
+```
+
+### S3 Example
+
+```python
+import boto3
+
+s3 = boto3.client(
+    "s3",
+    region_name="us-east-1"
+)
+```
+
+### Explanation
+
+```python
+boto3.client()
+```
+
+Creates an AWS service client.
+
+```python
+"s3"
+```
+
+Specifies that we want to use Amazon S3.
+
+```python
+region_name="us-east-1"
+```
+
+Specifies the AWS region.
+
+---
+
+# 8. Creating an S3 Bucket
+
+Boto3 provides the `create_bucket()` method to create an S3 bucket.
+
+### Syntax
+
+```python
+s3.create_bucket(
+    Bucket="bucket-name"
+)
+```
+
+### Example
+
+```python
+s3.create_bucket(
+    Bucket="my-first-boto3-bucket"
+)
+```
+
+### Explanation
+
+```text
+create_bucket()
+      ↓
+Creates an S3 bucket
+```
+
+`Bucket` is the Boto3 parameter.
+
+```python
+Bucket="my-first-boto3-bucket"
+```
+
+Here:
+
+```text
+Bucket
+   ↓
+Parameter
+
+"my-first-boto3-bucket"
+   ↓
+Actual bucket name
+```
+
+---
+
+# 9. `Bucket` vs `Buckets`
+
+This is an important distinction.
+
+### Bucket
+
+Used when referring to a single bucket.
+
+```python
+Bucket="my-bucket"
+```
+
+### Buckets
+
+Usually appears as a response key containing a list of buckets.
+
+```python
+response["Buckets"]
+```
+
+### Difference
+
+```text
+Bucket
+   ↓
+One bucket
+
+Buckets
+   ↓
+List of buckets
+```
+
+Example:
+
+```python
+{
+    "Buckets": [
+        {"Name": "bucket1"},
+        {"Name": "bucket2"},
+        {"Name": "bucket3"}
+    ]
+}
+```
+
+---
+
+# 10. Listing S3 Buckets
+
+The `list_buckets()` method returns information about the buckets.
+
+### Syntax
+
+```python
+response = s3.list_buckets()
+```
+
+### Example Response
+
+```python
+{
+    "Buckets": [
+        {
+            "Name": "my-first-boto3-bucket"
+        }
+    ]
+}
+```
+
+### Getting the Bucket List
+
+```python
+response["Buckets"]
+```
+
+This accesses the `"Buckets"` key from the response dictionary.
+
+---
+
+# 11. Looping Through Buckets
+
+```python
+for bucket in response["Buckets"]:
+    print(bucket["Name"])
+```
+
+### Breakdown
+
+```python
+response["Buckets"]
+```
+
+Returns a list.
+
+Example:
+
+```python
+[
+    {"Name": "bucket1"},
+    {"Name": "bucket2"},
+    {"Name": "bucket3"}
+]
+```
+
+Then:
+
+```python
+for bucket in response["Buckets"]:
+```
+
+takes one item from the list at a time.
+
+```python
+bucket
+```
+
+is a Python variable.
+
+Then:
+
+```python
+bucket["Name"]
+```
+
+gets the bucket name.
+
+### Output
+
+```text
+bucket1
+bucket2
+bucket3
+```
+
+---
+
+# 12. Creating a Local File
+
+Linux `touch` command creates a file.
+
+```bash
+touch test.txt
+```
+
+Check the file:
+
+```bash
+ls
+```
+
+Open the file:
+
+```bash
+nano test.txt
+```
+
+Example content:
+
+```text
+Hello from Kali Linux!
+I am learning Boto3.
+```
+
+Read the file:
+
+```bash
+cat test.txt
+```
+
+---
+
+# 13. Uploading a File to S3
+
+Boto3 provides the `upload_file()` method for uploading files.
+
+### Syntax
+
+```python
+s3.upload_file(
+    LOCAL_FILE,
+    BUCKET_NAME,
+    S3_OBJECT_NAME
+)
+```
+
+### Example
+
+```python
+s3.upload_file(
+    "test.txt",
+    "my-first-boto3-bucket",
+    "test.txt"
+)
+```
+
+---
+
+# 14. `upload_file()` Parameters
+
+### Parameter 1 — Local File
+
+```python
+"test.txt"
+```
+
+The file located on our local computer.
+
+```text
+Kali
+└── test.txt
+```
+
+---
+
+### Parameter 2 — Bucket Name
+
+```python
+"my-first-boto3-bucket"
+```
+
+The S3 bucket where the object will be uploaded.
+
+---
+
+### Parameter 3 — S3 Object Name
+
+```python
+"test.txt"
+```
+
+The name/key that the object will have inside S3.
+
+---
+
+# 15. Upload Flow
+
+```text
+Kali Linux
+    │
+    │ test.txt
+    ↓
+  Boto3
+    │
+    ↓
+   S3
+    │
+    ↓
+ Bucket
+    │
+    ↓
+ Object
+ test.txt
+```
+
+---
+
+# 16. Local Filename and S3 Object Name Can Be Different
+
+They do not have to be the same.
+
+Example:
+
+```python
+s3.upload_file(
+    "test.txt",
+    "my-first-boto3-bucket",
+    "backup.txt"
+)
+```
+
+Result:
+
+```text
+Kali
+└── test.txt
+
+        ↓ Upload
+
+S3 Bucket
+└── backup.txt
+```
+
+So:
+
+```text
+Local file = test.txt
+S3 object  = backup.txt
+```
+
+---
+
+# 17. S3 Object Key
+
+An S3 object has a **Key**.
+
+The Key identifies the object within the bucket.
+
+Example:
+
+```python
+{
+    "Key": "test.txt"
+}
+```
+
+Here:
+
+```text
+Key = test.txt
+```
+
+### More Examples
+
+```text
+photos/cat.jpg
+backups/database.sql
+logs/server.log
+documents/resume.pdf
+```
+
+These are S3 object keys.
+
+---
+
+# 18. Listing Objects in a Bucket
+
+Boto3 provides:
+
+```python
+list_objects_v2()
+```
+
+to retrieve objects from a bucket.
+
+### Syntax
+
+```python
+response = s3.list_objects_v2(
+    Bucket="bucket-name"
+)
+```
+
+### Example
+
+```python
+response = s3.list_objects_v2(
+    Bucket="my-first-boto3-bucket"
+)
+```
+
+Meaning:
+
+> Get information about the objects stored inside this bucket.
+
+---
+
+# 19. Understanding `Contents`
+
+A response can contain:
+
+```python
+{
+    "Contents": [
+        {
+            "Key": "test.txt",
+            "Size": 54
+        }
+    ]
+}
+```
+
+`Contents` contains a list of objects.
+
+### Structure
+
+```text
+response
+   │
+   └── Contents
+         │
+         ├── Object 1
+         ├── Object 2
+         └── Object 3
+```
+
+---
+
+# 20. Looping Through S3 Objects
+
+```python
+for obj in response["Contents"]:
+    print(obj["Key"])
+```
+
+### Explanation
+
+```python
+response["Contents"]
+```
+
+gets the list of objects.
+
+```python
+obj
+```
+
+is a variable representing one object.
+
+```python
+obj["Key"]
+```
+
+gets the object's key/name.
+
+### Example
+
+If the bucket contains:
+
+```text
+test.txt
+photo.jpg
+backup.zip
+```
+
+Output:
+
+```text
+test.txt
+photo.jpg
+backup.zip
+```
+
+---
+
+# 21. Getting Object Size
+
+S3 can return the size of an object.
+
+Example:
+
+```python
+{
+    "Key": "test.txt",
+    "Size": 54
+}
+```
+
+`Size` represents the object size in bytes.
+
+### Example
+
+```python
+for obj in response["Contents"]:
+    print("Object:", obj["Key"])
+    print("Size:", obj["Size"])
+```
+
+Output:
+
+```text
+Object: test.txt
+Size: 54
+```
+
+---
+
+# 22. `LastModified`
+
+S3 can return:
+
+```python
+"LastModified"
+```
+
+This contains the date/time when the object was last modified.
+
+Example:
+
+```python
+{
+    "Key": "test.txt",
+    "LastModified": ...
+}
+```
+
+Useful for:
+
+* Checking backups
+* Checking file updates
+* Monitoring data
+* Automation
+
+---
+
+# 23. `ETag`
+
+S3 can return an `ETag` for an object.
+
+Example:
+
+```python
+{
+    "ETag": "..."
+}
+```
+
+It is related to identifying/checking the object's content.
+
+> **Note:** ETag has more advanced behavior depending on how an object was uploaded, so its deeper details can be studied later.
+
+---
+
+# 24. `StorageClass`
+
+S3 objects have a storage class.
+
+Example:
+
+```python
+"StorageClass": "STANDARD"
+```
+
+`STANDARD` is the general-purpose S3 storage class.
+
+Different storage classes exist for different storage and access requirements.
+
+---
+
+# 25. `KeyCount`
+
+Example:
+
+```python
+"KeyCount": 1
+```
+
+This indicates the number of objects returned in the response.
+
+Example:
+
+```text
+Bucket
+│
+├── test.txt
+├── image.jpg
+└── backup.zip
+```
+
+Possible result:
+
+```text
+KeyCount = 3
+```
+
+---
+
+# 26. `ResponseMetadata`
+
+Boto3 responses can contain:
+
+```python
+"ResponseMetadata"
+```
+
+It contains information about the API request.
+
+Example:
+
+```python
+"ResponseMetadata": {
+    "HTTPStatusCode": 200
+}
+```
+
+### HTTP Status Code
+
+```text
+200 → Request successful
+400 → Bad request
+403 → Forbidden
+404 → Not found
+500 → Server error
+```
+
+---
+
+# 27. Complete S3 Boto3 Practice
+
+```python
+import boto3
+from moto import mock_aws
+
+with mock_aws():
+
+    # Create S3 client
+    s3 = boto3.client(
+        "s3",
+        region_name="us-east-1"
+    )
+
+    # Create bucket
+    s3.create_bucket(
+        Bucket="my-first-boto3-bucket"
+    )
+
+    # List buckets
+    response = s3.list_buckets()
+
+    for bucket in response["Buckets"]:
+        print("Bucket:", bucket["Name"])
+
+    # Upload file
+    s3.upload_file(
+        "test.txt",
+        "my-first-boto3-bucket",
+        "test.txt"
+    )
+
+    # List objects
+    response = s3.list_objects_v2(
+        Bucket="my-first-boto3-bucket"
+    )
+
+    # Display object information
+    for obj in response["Contents"]:
+        print("Object:", obj["Key"])
+        print("Size:", obj["Size"])
+```
+
+---
+
+# 28. Complete Workflow
+
+```text
+                    AWS S3
+                      │
+                      │
+                ┌─────┴─────┐
+                │   Bucket  │
+                └─────┬─────┘
+                      │
+                  ┌───┴───┐
+                  │Object │
+                  └───────┘
+```
+
+### Boto3 Workflow
+
+```text
+boto3.client("s3")
+        ↓
+create_bucket()
+        ↓
+list_buckets()
+        ↓
+upload_file()
+        ↓
+list_objects_v2()
+        ↓
+Access Object Information
+```
+
+---
+
+# 29. Important Boto3 Methods Learned
+
+| Method              | Purpose                    |
+| ------------------- | -------------------------- |
+| `boto3.client()`    | Create AWS service client  |
+| `create_bucket()`   | Create S3 bucket           |
+| `list_buckets()`    | List S3 buckets            |
+| `upload_file()`     | Upload local file          |
+| `list_objects_v2()` | List objects inside bucket |
+
+---
+
+# 30. Important S3 Terms
+
+| Term           | Meaning                                   |
+| -------------- | ----------------------------------------- |
+| S3             | AWS object storage service                |
+| Bucket         | Container for objects                     |
+| Object         | Data stored in S3                         |
+| Key            | Object identifier/name                    |
+| `Contents`     | List of objects returned by API           |
+| `Size`         | Object size in bytes                      |
+| `LastModified` | Last modification time                    |
+| `ETag`         | Object-related identifier/integrity value |
+| `StorageClass` | Storage tier/class                        |
+| `KeyCount`     | Number of returned objects                |
+
+---
+
+# 31. Cloud Engineering Connection
+
+Boto3 is important for Cloud Engineering because it allows us to **automate AWS infrastructure and services using Python**.
+
+Instead of manually performing repetitive tasks:
+
+```text
+AWS Console
+     ↓
+Manual Operations
+```
+
+we can automate them:
+
+```text
+Python
+   ↓
+Boto3
+   ↓
+AWS
+```
+
+Examples:
+
+```text
+Create resources
+Upload backups
+Download files
+Manage EC2
+Manage S3
+Monitor AWS
+Automate infrastructure tasks
+```
+
+---
+
+# 📌 Current Learning Progress
+
+
+Python
+  ↓
+Virtual Environment
+  ↓
+Boto3
+  ↓
+Moto
+  ↓
+AWS Client
+  ↓
+S3
+  ↓
+Bucket
+  ↓
+Object
+  ↓
+Create Bucket
+  ↓
+List Buckets
+  ↓
+Upload File
+  ↓
+List Objects
+```
+
+## Next S3 Topics
+
+```text
+1. download_file()
+2. get_object()
+3. Read S3 object
+4. Delete object
+5. Delete bucket
+6. S3 Keys / Prefixes
+7. Multiple file uploads
+8. Error handling
+9. AWS Credentials
+10. IAM permissions
+11. Real AWS S3
+```
+
+---
+
+### 📝 Quick Revision
+
+```text
+S3 = Storage Service
+
+Bucket = Container
+
+Object = Data stored in Bucket
+
+Key = Object name/identifier
+
+Boto3 = Python SDK for AWS
+
+Moto = AWS mocking/testing library
+
+create_bucket()
+    → Create bucket
+
+list_buckets()
+    → List buckets
+
+upload_file()
+    → Upload local file
+
+list_objects_v2()
+    → List objects in bucket
+```
 
